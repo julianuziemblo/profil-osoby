@@ -114,9 +114,14 @@ class PostState extends State<Post> {
   }
 }
 
-class IconRow extends StatelessWidget {
-  IconRow({super.key});
+class IconRow extends StatefulWidget {
+  const IconRow({super.key});
 
+  @override
+  State<StatefulWidget> createState() => IconRowState();
+}
+
+class IconRowState extends State<IconRow> {
   String numf(String n) {
     var numArr = n.split('');
     String revStr = "";
@@ -138,6 +143,20 @@ class IconRow extends StatelessWidget {
 
   final fontSize = 15.5;
   final rng = Random();
+  var _heartIcon = Icons.favorite_outline;
+  var _heartColor = const Color(0xff84858a);
+
+  void like() {
+    setState(() {
+      if (_heartIcon == Icons.favorite_outline) {
+        _heartIcon = Icons.favorite;
+        _heartColor = Colors.red;
+      } else {
+        _heartIcon = Icons.favorite_outline;
+        _heartColor = const Color(0xff84858a);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -164,11 +183,18 @@ class IconRow extends StatelessWidget {
                     color: const Color(0xff84858a), fontSize: fontSize - 1))
           ],
         ),
-        const SizedBox(width: 8),
+        //const SizedBox(width: 8),
         Row(
           children: [
-            Icon(Icons.favorite_outline,
-                color: const Color(0xff84858a), size: fontSize - 1),
+            IconButton(
+              onPressed: like,
+              alignment: Alignment.centerRight,
+              constraints: BoxConstraints.tight(const Size(25, 25)),
+              icon: Icon(_heartIcon, color: _heartColor),
+              padding: const EdgeInsets.all(0),
+              iconSize: fontSize - 1,
+              splashRadius: 0.1,
+            ),
             const SizedBox(width: 5),
             Text(numf('${rng.nextInt(10000)}'),
                 style: TextStyle(

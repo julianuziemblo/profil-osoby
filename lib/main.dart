@@ -50,44 +50,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Widget> posts = <Widget>[
     const Profile(),
-    Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            SizedBox(width: 39),
-            Icon(Icons.push_pin, color: Color(0xFF919294), size: 15),
-            SizedBox(width: 5),
-            Text('Przypięty tweet',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF919294),
-                )),
-          ],
-        ),
-        const SizedBox(height: 5),
-        Post(date: DateTime(2023, 5, 1), text: '***** ***'),
-      ],
+    PinnedTweet(
+      post: Post(
+          date: DateTime(2023, 5, 1),
+          text:
+              'I was pleased to meet Secretary of Defense. Another milestone in our partnership and contribution to Euroatlantic security. It contributes very much to 🇵🇱&🇺🇸strategic bond over centuries, as shown in the display unveiled with Secretary Austin in the Departament of Defense today.'),
     ),
-
     Post(
         date: DateTime(2023, 5, 9),
-        text:
-            'Wojewódzki mówi, że woli Konfederację od Razem, bo to lepsze dla jego portfela. Wybiera legalizację przemocy wobec dzieci, propagandę putinowską i postulowanie batożenia gejów - bo jako bogacz nie chce płacić większych podatków, by inni płacili mniejsze i mieli dostęp do lekarza.'),
+        text: 'Konsekwentnie wzmacniamy Wojsko Polskie!'),
     Post(
         date: DateTime(2023, 4, 30),
         text:
-            'Zarobiłem w zeszłym roku ponad 150k a mimo to dostanę zwrot podatku, ZUSu i dotację z Czystego powietrza xD tylko PiS gwarantuje tyle przywilejów dla bogatych! Więc na jesieni wybierzcie mądrze 🤪'),
+            'Kolejny krok w programie PILICA+. Podpisano umowy na dostawę wyrzutni #iLauncher i pocisków #CAMM oraz przeciwlotniczych systemów rakietowo-artyleryjskich PSR-A #PILICA. To skokowy wzrost możliwości rażenia celów powietrznych i zwiększenie zdolności polskiej obrony powietrznej.'),
     Post(
         date: DateTime(2023, 4, 16),
         text:
-            'Podobno Ukraińcy chcą zmienić rosyjską nazwę "Bachmut" na "Artiomowsk". Już raz w 1924 zmieniła ją Ukraińska SRS (na cześć śp.tow.Teodora Sergejewa ps."Artiom", komisarza jakiejś Ukraińskiej Rady Rewolucyjnej). Chodzi o to, by nie oddała "Bachmutu" lecz  jakiś "Artiemiwśk".'),
+            'Rok po wejściu w życie ustawy o obronie Ojczyzny w Wojsku Polskim służy już 167 tys. żołnierzy. Mamy rekordowy poziom powołań i w kilka lat osiągniemy nasz ambitny, ale realny cel - 300 tysięczne Siły Zbrojne RP.'),
     Post(
         date: DateTime(2023, 4, 15),
         text:
-            'Smutna wiadomość: jakaś KSNGpgP kazała zmienić nazwę "KALININGRAD" na "KRÓLEWIEC". Smutna - bo domagałem się tego od 60 lat, tłumaczyłem, przekonywałem - a barany nic. Argumenty nie działały. A jak jakaś reżymowa instytucja na polityczne zlecenie to nakazała: to już. Co za naród!'),
-    //Container(color: Colors.white, width: 100, height: 100),
+            'Kompleksowy antydronowy system polskiej produkcji #SKYctrl już znajduje się na wyposażeniu Wojska Polskiego. Jest przystosowany do działania z wielowarstwowym systemem obrony przeciwlotniczej. Urządzenia te pozwolą uzupełnić ochronę polskiej przestrzeni powietrznej.'), //Container(color: Colors.white, width: 100, height: 100),
   ];
 
   @override
@@ -121,18 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
         separatorBuilder: (context, index) =>
             const Divider(color: Color(0xFF2C2C2C), thickness: 2),
       ),
-      // body: CustomScrollView(center: centerKey, slivers: [
-      //   SliverList(
-      //     key: centerKey,
-      //     delegate: SliverChildBuilderDelegate(
-      //       (BuildContext context, int index) {
-      //         print('index: $index');
-      //         return posts[index];
-      //       },
-      //       childCount: posts.length,
-      //     ),
-      //   ),
-      // ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           const snackBar = SnackBar(
@@ -147,6 +118,39 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: const Color(0xFF1D9BF2),
         child: const Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class PinnedTweet extends StatelessWidget {
+  const PinnedTweet({
+    super.key,
+    required this.post,
+  });
+
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            SizedBox(width: 39),
+            Icon(Icons.push_pin, color: Color(0xFF919294), size: 15),
+            SizedBox(width: 5),
+            Text('Przypięty tweet',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF919294),
+                )),
+          ],
+        ),
+        const SizedBox(height: 5),
+        post,
+      ],
     );
   }
 }
