@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      //title: 'Flutter Demo',
       theme: ThemeData(
           primarySwatch:
               generateMaterialColorFromColor(const Color(0xFF010101))),
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       post: Post(
           date: DateTime(2023, 5, 1),
           text:
-              'I was pleased to meet Secretary of Defense. Another milestone in our partnership and contribution to Euroatlantic security. It contributes very much to 🇵🇱&🇺🇸strategic bond over centuries, as shown in the display unveiled with Secretary Austin in the Departament of Defense today.'),
+              'I was pleased to meet @SecOfDef. Another milestone in our partnership and contribution to Euroatlantic security. It contributes very much to 🇵🇱&🇺🇸strategic bond over centuries, as shown in the display unveiled with Secretary Austin in the @DeptOfDefense today.'),
     ),
     Post(
         date: DateTime(2023, 5, 9),

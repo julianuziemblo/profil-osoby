@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:profil_blaszczak/text_parser.dart';
 
 class Post extends StatefulWidget {
   const Post({
@@ -94,16 +95,14 @@ class PostState extends State<Post> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
-                      child: Text(widget.text,
-                          style: TextStyle(
-                              color: const Color(0xFFDADADA),
-                              fontSize: fontSize)),
+                      child: TextParser.parse(widget.text,
+                          const Color(0xFFDADADA), Colors.blue, fontSize),
                     )
                   ],
                 ),
                 const SizedBox(height: 8),
                 // icons
-                IconRow(),
+                const IconRow(),
               ],
             ),
           ],
