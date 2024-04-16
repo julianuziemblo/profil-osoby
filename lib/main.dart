@@ -82,14 +82,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0x00000000),
-        title: Center(
+        title: const Center(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SemiTransparentButton(icon: Icon(Icons.arrow_back)),
+                SemiTransparentButton(icon: Icon(Icons.arrow_back)),
                 Row(
-                  children: const <Widget>[
+                  children: [
                     SemiTransparentButton(icon: Icon(Icons.search)),
                     SemiTransparentButton(icon: Icon(Icons.more_vert))
                   ],
@@ -98,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: ListView.separated(
+        padding: const EdgeInsets.only(top: 10),
         scrollDirection: Axis.vertical,
         itemCount: posts.length,
         itemBuilder: (context, index) => posts[index],
@@ -134,18 +135,20 @@ class PinnedTweet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             SizedBox(width: 39),
             Icon(Icons.push_pin, color: Color(0xFF919294), size: 15),
             SizedBox(width: 5),
-            Text('Przypięty tweet',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF919294),
-                )),
+            Text(
+              'Przypięty tweet',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF919294),
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 5),

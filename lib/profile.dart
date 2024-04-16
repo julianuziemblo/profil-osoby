@@ -32,7 +32,7 @@ class ProfileState extends State<Profile> {
     return revStr.split('').reversed.join('');
   }
 
-  void obserwujClicked() {
+  void _obserwujClicked() {
     setState(() {
       if (_obserwuj == 'Obserwuj') {
         _obserwuj = 'Obserwujesz';
@@ -67,9 +67,9 @@ class ProfileState extends State<Profile> {
         Stack(
           clipBehavior: Clip.none,
           children: <Widget>[
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children: [
                 SizedBox(
                     width: 500,
                     height: 200,
@@ -102,13 +102,16 @@ class ProfileState extends State<Profile> {
               width: 130,
               height: 40,
               text: TextButton(
-                onPressed: obserwujClicked,
-                child: Text(_obserwuj,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    )),
+                onPressed: _obserwujClicked,
+                child: Text(
+                  _obserwuj,
+                  // textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
             SideButtonPositioned(
@@ -179,8 +182,8 @@ class ProfileState extends State<Profile> {
         Container(
           margin: const EdgeInsets.all(3),
           alignment: Alignment.centerLeft,
-          child: Row(
-            children: const [
+          child: const Row(
+            children: [
               Icon(Icons.calendar_month_outlined, color: Color(0xFF8A8B8D)),
               SizedBox(width: 2),
               Text('Dołączył/a kwiecień 2010',
@@ -241,22 +244,23 @@ class SideButtonPositioned extends StatelessWidget {
     return Positioned(
       top: top,
       right: right,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(1),
-            width: width,
-            height: height,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              border: Border.all(width: 2, color: const Color(0xFF363F44)),
-              //color: const Color(0x88232429),
-            ),
-            child: (icon != null) ? icon : text,
-          )
-        ],
+      width: width,
+      height: height,
+      child: Container(
+        // margin: const EdgeInsets.all(1),
+        // padding: const EdgeInsets.all(1),
+        // width: width,
+        // height: height,
+        // alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(
+            width: 2,
+            color: const Color(0xFF363F44),
+          ),
+          //color: const Color(0x88232429),
+        ),
+        child: (icon != null) ? icon : text,
       ),
     );
   }
